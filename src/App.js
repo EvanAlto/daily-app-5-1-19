@@ -26,6 +26,14 @@ class App extends Component {
       leftTextWidth: this.leftSpanRef.current.clientWidth,
       rightTextWidth: this.rightSpanRef.current.clientWidth,
     })
+
+    setInterval(() => {
+      this.setState({
+        textAndImageStage: 'exit',
+        backgroundStage: 'enter',
+        activeTransition: true
+      })
+    },4200)
   }
 
   componentDidUpdate(prevProps,prevState) {
@@ -50,16 +58,6 @@ class App extends Component {
     }
   }
 
-  handleClick = () => {
-    if (!this.state.activeTransition) {
-      this.setState({
-        textAndImageStage: 'exit',
-        backgroundStage: 'enter',
-        activeTransition: true
-      })
-    }
-  }
-
   render() {
     const { leftTextWidth, rightTextWidth, textAndImageStage, backgroundStage } = this.state
     const { backgroundColor, leftText, rightText, imageUrl } = this.props.sneakers[this.state.index]
@@ -69,7 +67,7 @@ class App extends Component {
     let rightSpanExit = { left: `-${rightTextWidth + 25}px` }
     let nextIndex = this.props.sneakers[this.state.index + 1] ? this.state.index + 1 : 0
     return (
-      <div onClick={this.handleClick} className='App'>
+      <div className='App'>
         <div className='main' style={{backgroundColor}}> 
           <img className={`image ${textAndImageStage === 'enter' ? 'enter': ''}`} alt='' src={`${imageUrl}`} />
           <div className={`background ${backgroundStage === 'enter' ? 'enter' : ''}`}
