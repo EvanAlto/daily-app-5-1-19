@@ -45,7 +45,7 @@
 .right-text span {
   font-size: 2rem;
   position: absolute;
-  top: calc((50% + 2.5rem) - 150px);
+  top: calc((50% + 2.5rem) - 140px);
 }
 
 .left-text span {  
@@ -78,14 +78,59 @@
   }
 }
 
+/****************************
+* BOTTOM
+****************************/
+
 .bottom {
   bottom: 0px;
   position: absolute;
   width: 95vw;
-  height: 150px;
+  height: 140px;
   background-color: #fefefe;
   z-index: 10;
+  display: flex;
 }
+
+.bottom .detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom .detail > * {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom .detail > :first-child {
+  align-items: flex-end;
+  font-size: 1.25rem;
+  position: relative;
+}
+
+.bottom .detail > :first-child span {
+  position: absolute;
+  bottom: -4rem;
+  transition: bottom 1s ease;
+}
+
+.bottom .detail > :first-child span.enter {
+  position: absolute;
+  bottom: 0px;
+}
+
+.bottom .detail > :nth-child(2) {
+  z-index: 2;
+  background-color: #fefefe;
+  font-weight: 400;
+}
+
+/****************************
+* MEDIA QUERIES
+****************************/
 
 @media screen and (min-width: 500px) {
   .left-text span,
@@ -98,6 +143,16 @@
   .left-text span,
   .right-text span {
     font-size: 4rem;
+  }
+}
+
+
+@media screen and (min-width: 700px) {
+  .bottom .detail {
+    font-size: 1.5rem;
+  }
+  .bottom .detail :first-child {
+    font-size: 2rem;
   }
 }
 

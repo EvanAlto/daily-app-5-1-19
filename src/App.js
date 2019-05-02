@@ -60,7 +60,7 @@ class App extends Component {
 
   render() {
     const { leftTextWidth, rightTextWidth, textAndImageStage, backgroundStage } = this.state
-    const { backgroundColor, leftText, rightText, imageUrl } = this.props.sneakers[this.state.index]
+    const { backgroundColor, leftText, rightText, imageUrl, sku, release, nickname } = this.props.sneakers[this.state.index]
     let leftSpanEnter = { right: `calc(50% - ${leftTextWidth / 2}px` }
     let leftSpanExit = { right: `-${leftTextWidth + 25}px` }
     let rightSpanEnter = { left: `calc(50% - ${rightTextWidth / 2}px)` }
@@ -69,8 +69,8 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='main' style={{backgroundColor}}> 
-          <img className={`image ${textAndImageStage === 'enter' ? 'enter': ''}`} alt='' src={`${imageUrl}`} />
-          <div className={`background ${backgroundStage === 'enter' ? 'enter' : ''}`}
+          <img className={`image ${textAndImageStage === 'enter' && 'enter'}`} alt='' src={`${imageUrl}`} />
+          <div className={`background ${backgroundStage === 'enter' && 'enter'}`}
             style={ backgroundStage === 'enter' ? 
               { backgroundColor: this.props.sneakers[nextIndex].backgroundColor} : {}
           }/>
@@ -89,7 +89,20 @@ class App extends Component {
               </span>
             </div>
         </div>
-        <div className='bottom'></div>
+        <div className='bottom'>
+          <div className='detail'>
+            <div><span className={textAndImageStage === 'enter' && 'enter'}>{sku}</span></div>
+            <div>SKU</div>
+          </div>
+          <div className='detail'>
+            <div><span className={textAndImageStage === 'enter' && 'enter'}>{nickname}</span></div>
+            <div>NICKNAME</div>
+          </div>
+          <div className='detail'>
+            <div><span className={textAndImageStage === 'enter' && 'enter'}>{release}</span></div>
+            <div>RELEASE</div>
+          </div>
+        </div>
       </div>
     )
   }
