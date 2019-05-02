@@ -12,6 +12,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 
@@ -41,24 +43,71 @@
 
 .left-text span,
 .right-text span {
-  font-size: 5rem;
+  font-size: 2rem;
   position: absolute;
   top: calc((50% + 2.5rem) - 150px);
 }
 
 .left-text span {  
-  transition: right 1s ease;
+  transition: font-size .5s ease, right 1s ease;
 }
 
 .right-text span {
-  transition: left 1s ease;
+  transition: font-size .5s ease, left 1s ease;
+}
+
+.image {
+  position: absolute;
+  transform: rotate(-15deg);
+  width: 700px;
+  height: 420px;
+  left: calc(50% - 400px);
+  top: calc(50% - 250px);
+}
+
+.image.enter {
+  animation: appear 1s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .bottom {
   bottom: 0px;
   position: absolute;
-  width: 60vw;
+  width: 95vw;
   height: 150px;
   background-color: #fefefe;
   z-index: 10;
+}
+
+@media screen and (min-width: 500px) {
+  .left-text span,
+  .right-text span {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .left-text span,
+  .right-text span {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .bottom {
+    width: 70vw;
+  }
+
+  .left-text span,
+  .right-text span {
+    font-size: 5rem;
+  }
 }

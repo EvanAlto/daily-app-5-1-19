@@ -62,15 +62,16 @@ class App extends Component {
 
   render() {
     const { leftTextWidth, rightTextWidth, textAndImageStage, backgroundStage } = this.state
-    const { backgroundColor, leftText, rightText } = this.props.sneakers[this.state.index]
-    let leftSpanEnter = { right: `calc(60% - ${leftTextWidth / 2}px` }
+    const { backgroundColor, leftText, rightText, imageUrl } = this.props.sneakers[this.state.index]
+    let leftSpanEnter = { right: `calc(50% - ${leftTextWidth / 2}px` }
     let leftSpanExit = { right: `-${leftTextWidth + 25}px` }
-    let rightSpanEnter = { left: `calc(60% - ${rightTextWidth / 2}px)` }
+    let rightSpanEnter = { left: `calc(50% - ${rightTextWidth / 2}px)` }
     let rightSpanExit = { left: `-${rightTextWidth + 25}px` }
     let nextIndex = this.props.sneakers[this.state.index + 1] ? this.state.index + 1 : 0
     return (
       <div onClick={this.handleClick} className='App'>
         <div className='main' style={{backgroundColor}}> 
+          <img className={`image ${textAndImageStage === 'enter' ? 'enter': ''}`} alt='' src={`${imageUrl}`} />
           <div className={`background ${backgroundStage === 'enter' ? 'enter' : ''}`}
             style={ backgroundStage === 'enter' ? 
               { backgroundColor: this.props.sneakers[nextIndex].backgroundColor} : {}
